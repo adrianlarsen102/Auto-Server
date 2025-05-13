@@ -2,4 +2,4 @@
 - hosts: Rocky
   become: true
   roles:
-    - lamp
+    - lemp
