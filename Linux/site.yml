@@ -1,0 +1,6 @@
+---
+- name: Configure DHCP and DNS
+  hosts: Rocky
+  become: true
+  roles:
+    - dhcp_dns

@@ -1,0 +1,57 @@
+- name: Install DHCP and DNS packages
+  dnf:
+    name:
+      - dhcp-server
+      - bind
+      - firewalld
+    state: present
+
+- name: Start and enable firewalld
+  service:
+    name: firewalld
+    enabled: true
+    state: started
+
+- name: Open necessary firewall services
+  firewalld:
+    service: "{{ item }}"
+    permanent: true
+    state: enabled
+    immediate: yes
+  loop:
+    - dhcp
+    - dns
+
+- name: Deploy DHCP configuration
+  template:
+    src: dhcpd.conf.j2
+    dest: /etc/dhcp/dhcpd.conf
+
+- name: Enable and start DHCP server
+  service:
+    name: dhcpd
+    enabled: true
+    state: started
+
+- name: Deploy named.conf
+  template:
+    src: named.conf.j2
+    dest: /etc/named.conf
+
+- name: Deploy DNS forward zone
+  template:
+    src: forward.zone.j2
+    dest: /var/named/{{ dns_domain }}.zone
+    mode: 0644
+
+- name: Deploy DNS reverse zone
+  template:
+    src: reverse.zone.j2
+    dest: /var/named/{{ dns_network_prefix }}.zone
+    mode: 0644
+
+- name: Enable and start named
+  service:
+    name: named
+    enabled: true
+    state: started

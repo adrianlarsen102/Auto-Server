@@ -1,0 +1,23 @@
+options {
+  listen-on port 53 { any; };
+  allow-query { any; };
+  recursion yes;
+  forwarders {
+    {% for ip in dns_forwarders %}
+    {{ ip }};
+    {% endfor %}
+  };
+  directory "/var/named";
+};
+
+zone "{{ dns_domain }}" IN {
+  type master;
+  file "{{ dns_domain }}.zone";
+  allow-update { none; };
+};
+
+zone "{{ dns_network_prefix }}.in-addr.arpa" IN {
+  type master;
+  file "{{ dns_network_prefix }}.zone";
+  allow-update { none; };
+};
