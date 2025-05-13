@@ -1,1 +1,2 @@
-Automaticly installes DHCP,DNS,Fail2ban,Lemp or lamp stacks
+Automaticly installes DHCP,DNS,Fail2ban 
+optinal Lemp or lamp stacks

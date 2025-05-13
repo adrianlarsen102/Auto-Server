@@ -1,0 +1,19 @@
+---
+- name: Install LAMP Stack Packages
+  dnf:
+	name:
+		- httpd
+		- mariadb-server
+		- php
+		- php-mysqlnd
+	state: present
+	update_cache: yes
+
+- name: Enable and start services
+  systemd:
+  	name: "{{ item }}"
+  	state: started
+  	enabled: yes
+  loop:
+  	- httpd
+  	- mariadb
