@@ -1,8 +1,8 @@
 # Scriptindstillinger
 $csvPath = "C:\Scripts\brugere.csv"         #  stien til CSV-filen
 $logPath = "C:\Scripts\opret_brugere_log.txt"
-$ouPath = "user,asa,com" #  din OU og domænestruktur
-$defaultPassword = "Kode1234!!"            # Standard adgangskode
+$ouPath = "user,DystopianTech,Local" #  din OU og domænestruktur
+$defaultPassword = "Kode1234!"            # Standard adgangskode
 
 # Importér CSV
 $brugere = Import-Csv -Path $csvPath
@@ -12,7 +12,7 @@ Add-Content -Path $logPath -Value "==== Log for brugeroprettelse $(Get-Date) ===
 
 # Opret brugere
 foreach ($bruger in $brugere) {
-    $userPrincipalName = "$($bruger.'User Name')@ditdomæne.local"
+    $userPrincipalName = "$($bruger.'User Name')@DystopianTech.local"
     $samAccountName = $bruger.'User Name'
     $fullName = $bruger.'Full Name'
 
