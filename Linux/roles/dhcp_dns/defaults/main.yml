@@ -4,7 +4,7 @@ dhcp_range_start: "192.168.1.100"
 dhcp_range_end: "192.168.1.200"
 dhcp_router: "192.168.1.1"
 dhcp_broadcast: "192.168.1.255"
-dns_domain: "asa.com"
+dns_domain: "DystopianTech.Local"
 dns_zone_file: "forward.zone"
 dns_reverse_zone_file: "reverse.zone"
 dns_forwarders:
