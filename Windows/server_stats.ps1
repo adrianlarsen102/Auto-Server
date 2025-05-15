@@ -27,4 +27,4 @@ $uptime = (Get-CimInstance Win32_OperatingSystem).LastBootUpTime
 Write-Host "Last boot time: $uptime"
 '@
 
-Invoke-Command -ComputerName "YourServerName" -Credential (Get-Credential) -ScriptBlock ([ScriptBlock]::Create($script))
+Invoke-Command -ComputerName "10.14.2.87" -Credential (Get-Credential) -ScriptBlock ([ScriptBlock]::Create($script))
