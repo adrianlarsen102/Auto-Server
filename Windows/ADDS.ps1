@@ -5,7 +5,7 @@ Install-WindowsFeature -Name AD-Domain-Services -IncludeManagementTools
 Import-Module ADDSDeployment
 
 # Define variables for the domain configuration
-$DomainName = "asa.com"  # Replace with your desired domain name
+$DomainName = "DystopianTech.Local"  # Replace with your desired domain name
 $SafeModePassword = (ConvertTo-SecureString "P@ssw0rd!" -AsPlainText -Force)  # Replace with a secure password
 
 # Promote the server to a domain controller and create a new forest
