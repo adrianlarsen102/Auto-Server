@@ -1,6 +1,6 @@
 Import-Module ActiveDirectory
 
-$csvPath = "C:\Scripts\users.csv"
+$csvPath = "C:\Scripts\users.csv" 
 $logFile = "C:\Logs\user_creation_log.txt"
 
 if (!(Test-Path $logFile)) {
