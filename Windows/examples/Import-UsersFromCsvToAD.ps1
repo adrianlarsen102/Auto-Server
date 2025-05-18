@@ -9,6 +9,9 @@
     CSV Format     : Should include: FirstName,LastName,Username,Password,OU,Department,Title,Email
 #>
 
+# Script version
+$SCRIPT_VERSION = "1.0.3"
+
 #region Initialization
 Clear-Host
 $scriptStartTime = Get-Date
@@ -47,9 +50,9 @@ function Write-Log {
     }
 }
 
-# Log script start
+# Log script start with version information
 Write-Log -Message "==============================================" -ConsoleOutput
-Write-Log -Message " Active Directory User Import Tool" -ConsoleOutput
+Write-Log -Message " Active Directory User Import Tool v$SCRIPT_VERSION" -ConsoleOutput
 Write-Log -Message " Script started at $scriptStartTime" -ConsoleOutput
 Write-Log -Message " Log file: $logFilePath" -ConsoleOutput
 Write-Log -Message "==============================================" -ConsoleOutput
@@ -221,7 +224,7 @@ $durationString = "{0:hh\:mm\:ss}" -f $duration
 
 # Final report
 Write-Log -Message "==============================================" -ConsoleOutput
-Write-Log -Message " USER IMPORT SUMMARY" -ConsoleOutput
+Write-Log -Message " USER IMPORT SUMMARY (v$SCRIPT_VERSION)" -ConsoleOutput
 Write-Log -Message "==============================================" -ConsoleOutput
 Write-Log -Message " Start time:          $scriptStartTime" -ConsoleOutput
 Write-Log -Message " End time:            $scriptEndTime" -ConsoleOutput
