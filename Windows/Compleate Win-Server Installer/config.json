@@ -1,0 +1,16 @@
+{
+	"Version": "2.0.0",
+	"Metadata": {
+		"Environment": "Production",
+		"LastUpdated": "2025-15-19",
+		"Author": "Adrian Larsen"
+	},
+	"Servers": {
+		"PrimaryServer": "10.14.2.87",
+		"SecondaryServers": {
+			"DNS": "10.14.2.87",
+			"DHCP": "10.14.2.97",
+			"IIS": "10.14.2.97",
+		}
+	}
+}
