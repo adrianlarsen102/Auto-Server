@@ -10,15 +10,15 @@ param (
     [switch]$WhatIf
 )
 
-# Import Logging
+# Import logging
 . .\Logging.ps1
 
 try {
-    Write-Log -Level Info -Message "Starting DNS Server configuration."
+    Write-Log -Level Info -Message "Starting DNS server configuration"
 
-    # install DNS role if needed
+    # Install DNS role if needed
     if (-not (Get-WindowsFeature -Name DNS).Installed) {
-        Write-Log -Level Info -Message "Installing DNS Server role."
+        Write-Log -Level Info -Message "Installing DNS server role"
         if (-not $WhatIf) {
             Install-WindowsFeature -Name DNS -IncludeManagementTools
         }
@@ -48,5 +48,9 @@ try {
         Write-Log -Level Warning -Message "WhatIf: Would configure DNS with $($Config.Forwarders.Count) forwarders and $($Config.Zones.Count) zones"
     }
 
-    return @{Success=$true; Message="DNS Configuration completed."}
+    return @{Success=$true; Message="DNS configuration completed"}
+}
+catch {
+    Write-Log -Level Error -Message "DNS configuration failed: $_"
+    return @{Success=$false; Message=$_}
 }
