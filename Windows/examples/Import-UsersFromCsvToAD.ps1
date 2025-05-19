@@ -18,7 +18,7 @@ ${SCRIPT_VERSION} = "1.0.4"
 Clear-Host
 ${scriptStartTime} = Get-Date
 ${logFolder} = "C:\Logs\ADUserImport"
-${logFileName} = "ADUserImport_$(${scriptStartTime}.ToString('yyyyMMdd_HHmmss')).log"
+${logFileName} = "ADUserImport_$(${scriptStartTime}.ToString('yyyyddMM_HHmmss')).log"
 ${logFilePath} = Join-Path -Path ${logFolder} -ChildPath ${logFileName}
 
 # Create log directory if it doesn't exist
