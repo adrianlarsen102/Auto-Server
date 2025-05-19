@@ -34,7 +34,7 @@ function Write-Log {
         [switch]${ConsoleOutput}
     )
     
-    ${timestamp} = Get-Date -Format "yyyy-MM-dd HH:mm:ss"
+    ${timestamp} = Get-Date -Format "yyyy-dd-MM HH:mm:ss"
     ${logEntry} = "[${timestamp}] [${Level}] ${Message}"
     
     # Write to log file
