@@ -1,11 +1,11 @@
 #!/bin/bash
 
 # --- Configuration ---
-LINUX_SOURCE_DIR="/var/named"         # Replace with your folder to back up
-WINDOWS_SHARE="//10.14.2.87/BackupShare"     # Replace with your Windows server IP and share
+LINUX_SOURCE_DIR="/var/named"         # folder to back up
+WINDOWS_SHARE="//10.14.2.87/BackupShare"     #Windows server IP and share
 MOUNT_POINT="/mnt/windows_backup"
-USERNAME="administrator"                         # Windows username
-PASSWORD="Kode1234!"                        # Windows password
+USERNAME="xxxxxxx"                         # Windows username
+PASSWORD="xxxxxxx"                        # Windows password
 LOG_FILE="/var/log/linux-to-windows-backup.log"
 
 # --- Create mount point if it doesn't exist ---
