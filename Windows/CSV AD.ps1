@@ -19,29 +19,29 @@ Copy-Item -Path $CsvPath -Destination $RemoteCsvPath -ToSession $session
 Invoke-Command -Session $session -ScriptBlock {
     param($CsvPath)
 
-    function Create-ADUsersFromCSV {
+    function Create-ADUsersFromCSV { # Function to create AD users from CSV
         param (
-            [string]$CsvPath,
-            [string]$LogPath = "C:\Logs\AD_UserCreation_Log.txt",
-            [string]$DefaultPassword = "Kode1234!",
-            [string]$OU = "OU=Brugere,DC=DystopianTech,DC=Local"
+            [string]$CsvPath, # Path to the CSV file
+            [string]$LogPath = "C:\Logs\AD_UserCreation_Log.txt", # Path to the log file
+            [string]$DefaultPassword = "Kode1234!", # Default password for new users
+            [string]$OU = "OU=Brugere,DC=DystopianTech,DC=Local" # Organizational Unit for new users
         )
-        $securePassword = ConvertTo-SecureString $DefaultPassword -AsPlainText -Force
-        if (-not (Get-Module -ListAvailable -Name ActiveDirectory)) {
-            Write-Error "Active Directory module is not available. Please install RSAT: Active Directory tools."
-            exit
+        $securePassword = ConvertTo-SecureString $DefaultPassword -AsPlainText -Force # Convert password to secure string
+        if (-not (Get-Module -ListAvailable -Name ActiveDirectory)) { # Check if Active Directory module is available
+            Write-Error "Active Directory module is not available. Please install RSAT: Active Directory tools." # Error message
+            exit # script lukker hvis modulet ikke er tilgængeligt
         }
-        Import-Module ActiveDirectory
+        Import-Module ActiveDirectory # Importere Active Directory modulet
         if (-not ([Security.Principal.WindowsPrincipal] [Security.Principal.WindowsIdentity]::GetCurrent()).IsInRole([Security.Principal.WindowsBuiltInRole] "Administrator")) {
-            Write-Error "This script must be run as an administrator."
+            Write-Error "This script must be run as an administrator." # Error message
             exit
         }
-        if (-not (Test-Path $CsvPath)) {
+        if (-not (Test-Path $CsvPath)) { # Tjekker om CSV filen findes
             Write-Error "CSV file not found at path: $CsvPath"
             exit
         }
-        "User creation log - $(Get-Date)" | Out-File -FilePath $LogPath
-        Import-Csv $CsvPath | ForEach-Object {
+        "User creation log - $(Get-Date)" | Out-File -FilePath $LogPath # Log filen oprettes
+        Import-Csv $CsvPath | ForEach-Object { 
             try {
                 $userPrincipalName = "$($_.UserName)@asa.com"
                 New-ADUser `
