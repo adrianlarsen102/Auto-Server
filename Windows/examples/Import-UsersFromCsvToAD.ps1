@@ -18,7 +18,7 @@ ${SCRIPT_VERSION} = "1.0.4"
 Clear-Host
 ${scriptStartTime} = Get-Date
 ${logFolder} = "C:\Logs\ADUserImport"
-${logFileName} = "ADUserImport_$(${scriptStartTime}.ToString('yyyyddMM_HHmmss')).log"
+${logFileName} = "ADUserImport_$(${scriptStartTime}.ToString('yyyyMMdd_HHmmss')).log"
 ${logFilePath} = Join-Path -Path ${logFolder} -ChildPath ${logFileName}
 
 # Create log directory if it doesn't exist
@@ -34,7 +34,7 @@ function Write-Log {
         [switch]${ConsoleOutput}
     )
     
-    ${timestamp} = Get-Date -Format "yyyy-dd-MM HH:mm:ss"
+    ${timestamp} = Get-Date -Format "yyyy-MM-dd HH:mm:ss"
     ${logEntry} = "[${timestamp}] [${Level}] ${Message}"
     
     # Write to log file
