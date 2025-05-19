@@ -2,7 +2,7 @@ param (
     [string]$ServerName = "10.14.2.87"
 )
 
-# First, obtain your credentials interactively and store them in a variable.
+#obtain credentials
 $credential = Get-Credential
 
 $remoteScript = {
@@ -39,5 +39,5 @@ $remoteScript = {
     $results -join "`n"
 }
 
-# Execute the remote script using the provided credentials.
+# Execute the remote script
 Invoke-Command -ComputerName $ServerName -Credential $credential -ScriptBlock $remoteScript
