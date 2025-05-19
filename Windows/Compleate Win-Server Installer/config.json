@@ -1,16 +1,30 @@
 {
-	"Version": "2.0.0",
-	"Metadata": {
-		"Environment": "Production",
-		"LastUpdated": "2025-15-19",
-		"Author": "Adrian Larsen"
-	},
-	"Servers": {
-		"PrimaryServer": "10.14.2.87",
-		"SecondaryServers": {
-			"DNS": "10.14.2.87",
-			"DHCP": "10.14.2.97",
-			"IIS": "10.14.2.97",
-		}
-	}
+    "Version": "2.0.0",
+    "Metadata": {
+        "Environment": "Production",
+        "LastUpdated": "2023-11-15",
+        "Author": "IT Deployment Team"
+    },
+    "Servers": {
+        "PrimaryServer": "dc01.corp.example.com",
+        "SecondaryServers": {
+            "DHCP": "dhcp01.corp.example.com",
+            "IIS": "web01.corp.example.com"
+        }
+    },
+    "ADDS": {
+        "Install": true,
+        "DomainName": "corp.example.com",
+        "NetBIOSName": "CORP",
+        "SafeModePasswordPrompt": true,
+        "ForestMode": "WinThreshold"
+    },
+    "DNS": {
+        "Install": true,
+        "Forwarders": ["8.8.8.8", "8.8.4.4"]
+    },
+    "Logging": {
+        "LogPath": "C:\\DeploymentLogs",
+        "LogLevel": "Verbose"  # Options: Error, Warning, Info, Verbose
+    }
 }
