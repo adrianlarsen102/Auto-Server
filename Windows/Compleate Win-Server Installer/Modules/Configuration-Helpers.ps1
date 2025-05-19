@@ -12,7 +12,7 @@ function Invoke-RemoteInstallation {
         [int]$RetryCount = 3
     )
 
-    $attemopt = 0
+    $attempt = 0
     $success = $false
 
     while (-not $success -and $attempt -lt $RetryCount) {
