@@ -1,3 +1,5 @@
+# make the notes en danish language
+
 <#
 .SYNOPSIS
     Imports users from a CSV file to Active Directory with full logging capabilities.
@@ -15,70 +17,70 @@
 ${SCRIPT_VERSION} = "1.0.4"
 
 #region Initialization
-Clear-Host
-${scriptStartTime} = Get-Date
-${logFolder} = "C:\Logs\ADUserImport"
-${logFileName} = "ADUserImport_$(${scriptStartTime}.ToString('yyyyMMdd_HHmmss')).log"
-${logFilePath} = Join-Path -Path ${logFolder} -ChildPath ${logFileName}
+Clear-Host # Ryder kosollen
+${scriptStartTime} = Get-Date # Start tiden
+${logFolder} = "C:\Logs\ADUserImport" # Stien til logfiler
+${logFileName} = "ADUserImport_$(${scriptStartTime}.ToString('yyyyMMdd_HHmmss')).log" # Navn på logfilen
+${logFilePath} = Join-Path -Path ${logFolder} -ChildPath ${logFileName} #
 
 # Create log directory if it doesn't exist
-if (-not (Test-Path -Path ${logFolder})) {
-    New-Item -ItemType Directory -Path ${logFolder} | Out-Null
+if (-not (Test-Path -Path ${logFolder})) { # Tjekker om logmappen findes
+    New-Item -ItemType Directory -Path ${logFolder} | Out-Null # Opretter logmappen
 }
 
 # Function for unified logging
-function Write-Log {
-    param (
-        [string]${Message},
-        [string]${Level} = "INFO",
-        [switch]${ConsoleOutput}
+function Write-Log { # Funktion til logning
+    param ( # Parametre til logning
+        [string]${Message}, # Log besked
+        [string]${Level} = "INFO", # Log niveau (INFO, WARN, ERROR, DEBUG)
+        [switch]${ConsoleOutput} = $true # Om log beskeden skal vises i konsollen
     )
     
-    ${timestamp} = Get-Date -Format "yyyy-MM-dd HH:mm:ss"
-    ${logEntry} = "[${timestamp}] [${Level}] ${Message}"
+    ${timestamp} = Get-Date -Format "yyyy-MM-dd HH:mm:ss" # Tidsstempel
+    ${logEntry} = "[${timestamp}] [${Level}] ${Message}" # Log besked format
     
     # Write to log file
-    ${logEntry} | Out-File -FilePath ${logFilePath} -Append
+    ${logEntry} | Out-File -FilePath ${logFilePath} -Append # Skriver log besked til filen
     
     # Write to console if requested
-    if (${ConsoleOutput}) {
-        switch (${Level}) {
-            "ERROR" { Write-Host ${logEntry} -ForegroundColor Red }
-            "WARN"  { Write-Host ${logEntry} -ForegroundColor Yellow }
-            "INFO"  { Write-Host ${logEntry} -ForegroundColor Green }
-            "DEBUG" { Write-Host ${logEntry} -ForegroundColor Gray }
-            default { Write-Host ${logEntry} }
+    if (${ConsoleOutput}) { # Hvis konsol output er aktiveret
+        switch (${Level}) { # Viser log besked i konsollen
+            "ERROR" { Write-Host ${logEntry} -ForegroundColor Red } # Fejl
+            "WARN"  { Write-Host ${logEntry} -ForegroundColor Yellow } # Advarsel
+            "INFO"  { Write-Host ${logEntry} -ForegroundColor Green } # Information
+            "DEBUG" { Write-Host ${logEntry} -ForegroundColor Gray } # Debug
+            default { Write-Host ${logEntry} } # Standard
         }
     }
 }
 
 # Log script start with version information
-Write-Log -Message "==============================================" -ConsoleOutput
-Write-Log -Message " Active Directory User Import Tool v${SCRIPT_VERSION}" -ConsoleOutput
-Write-Log -Message " Script started at ${scriptStartTime}" -ConsoleOutput
-Write-Log -Message " Log file: ${logFilePath}" -ConsoleOutput
-Write-Log -Message "==============================================" -ConsoleOutput
+Write-Log -Message "==============================================" -ConsoleOutput # Separator
+Write-Log -Message " Active Directory User Import Tool v${SCRIPT_VERSION}" -ConsoleOutput # Script version
+Write-Log -Message " Script started at ${scriptStartTime}" -ConsoleOutput # Start tid
+Write-Log -Message " Log file: ${logFilePath}" -ConsoleOutput # Log fil sti
+Write-Log -Message "==============================================" -ConsoleOutput # Separator
 #endregion
 
 #region User Input
 try {
     # Prompt for server information
-    ${server} = Read-Host "Enter the Domain Controller IP address or hostname"
-    if (-not ${server}) {
-        Write-Log -Message "Server address is required." -Level ERROR -ConsoleOutput
-        exit 1
+    ${server} = Read-Host "Enter the Domain Controller IP address or hostname" # Server IP
+    if (-not ${server}) { # Tjekker om server IP er angivet
+        Write-Log -Message "Server address is required." -Level ERROR -ConsoleOutput # Fejl besked
+        exit 1 # Afslutter scriptet
     }
-    Write-Log -Message "Target server: ${server}" -ConsoleOutput
+    Write-Log -Message "Target server: ${server}" -ConsoleOutput # Server IP
 
     # Get credentials
-    ${credential} = Get-Credential -Message "Enter your domain administrator credentials"
-    if (-not ${credential}) {
-        Write-Log -Message "Credentials are required." -Level ERROR -ConsoleOutput
+    ${credential} = Get-Credential -Message "Enter your domain administrator credentials" # Henter credentials
+    if (-not ${credential}) { # Tjekker om credentials er angivet
+        Write-Log -Message "Credentials are required." -Level ERROR -ConsoleOutput # Fejl besked
         exit 1
     }
-    Write-Log -Message "Credentials obtained" -Level DEBUG
+    Write-Log -Message "Credentials obtained" -Level DEBUG # Konsol output
 
-    # Prompt for CSV file path
+    # Prompt for CSV file path 
     ${csvPath} = Read-Host "Enter the full path to your CSV file (e.g., C:\Users.csv)"
     if (-not ${csvPath}) {
         Write-Log -Message "CSV file path is required." -Level ERROR -ConsoleOutput
