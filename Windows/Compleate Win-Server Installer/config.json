@@ -25,6 +25,7 @@
     },
     "Logging": {
         "LogPath": "C:\\DeploymentLogs",
-        "LogLevel": "Verbose"  # Options: Error, Warning, Info, Verbose
+        "LogLevel": "Verbose",  
+        "Options": ["Error", "Warning", "Info", "Verbose"]
     }
 }
