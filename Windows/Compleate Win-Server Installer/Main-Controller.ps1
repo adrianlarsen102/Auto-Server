@@ -17,8 +17,12 @@ $script:StartTime = Get-Date
 $script:DeploymentVersion = $null
 
 # Load modules
-. .\Modules\Logging.ps1
-. .\Modules\Configuration-Helpers.ps1
+. .\Windows\Compleate Win-Server Installer\Modules\Logging.ps1
+. .\Windows\Compleate Win-Server Installer\Modules\Configuration-Helpers.ps1
+. .\Windows\Compleate Win-Server Installer\Modules\ADDS-Installer.ps1
+. .\Windows\Compleate Win-Server Installer\Modules\DNS-Installer.ps1
+. .\Windows\Compleate Win-Server Installer\Modules\DHCP-Installer.ps1
+. .\Windows\Compleate Win-Server Installer\Modules\IIS-Installer.ps1
 
 # Load and validate configuration
 try {
