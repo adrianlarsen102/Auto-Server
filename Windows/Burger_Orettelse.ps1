@@ -2,7 +2,7 @@
 $csvPath = "C:\Scripts\brugere.csv"         #  stien til CSV-filen
 $logPath = "C:\Scripts\opret_brugere_log.txt"
 $ouPath = "user,DystopianTech,Local" #  din OU og domænestruktur
-$defaultPassword = ""            # Standard adgangskode
+
 
 # Importér CSV
 $brugere = Import-Csv -Path $csvPath
