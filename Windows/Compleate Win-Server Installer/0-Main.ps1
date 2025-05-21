@@ -9,7 +9,7 @@ Write-Host "1 - DHCP Server"
 Write-Host "2 - DNS Server"
 Write-Host "3 - IIS (Web Server)"
 Write-Host "4 - AD DS (Domain Controller)"
-Write-Host "5 - Set Hostname & Timezone"
+Write-Host "5 - Configure Network Settings"
 
 $choices = (Read-Host "Your choices").Split(",") | ForEach-Object { $_.Trim() }
 
