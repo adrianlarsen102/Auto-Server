@@ -1,6 +1,6 @@
 . "$PSScriptRoot\utils.ps1"
 
-$serverIP = Read-Host "Enter IP of the Server 2025 Core"
+$serverIP = Read-Host "Enter IP of the Server you want to configure"
 $cred = Get-Credential -Message "Enter admin credentials for $serverIP"
 $config = Get-Content "$PSScriptRoot\config.json" | ConvertFrom-Json
 

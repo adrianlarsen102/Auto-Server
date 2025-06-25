@@ -1,7 +1,7 @@
 {
-  "Hostname": "Server2025Core",
-  "Domain": "asa.local",
+  "Hostname": "Server01",
+  "Domain": "netsec.com",
   "SafeModePassword": "P@ssw0rd123",
-  "DNSServers": ["8.8.8.8", "8.8.4.4"],
+  "DNSServers": ["1.1.1.1", "8.8.8.8"],
   "TimeZone": "W. Europe Standard Time"
 }
